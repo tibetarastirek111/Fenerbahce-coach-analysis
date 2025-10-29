@@ -1,7 +1,7 @@
 # Performance analysis of Fenerbahçe Football Team based on manager selection (Domestic / Foreign) (DSA210 Term Project)
 
 ## Motivation
-Fenerbahçe, one of the most established football clubs in Turkey, has had numerous coaches from both Turkish and foreign backgrounds. A long-standing debate has been whether a Turkish or a foreign coach is more suitable for Fenerbahçe. Through this project, I aim to apply data science techniques to answer this question objectively, by analyzing Fenerbahçe’s historical performance under different managers.
+Fenerbahçe, one of the most established football clubs in Turkey, has had numerous coaches from both Turkish and foreign backgrounds. A long-standing debate has been whether a Turkish or a foreign coach is more suitable for Fenerbahçe. Through this project, I aim to apply data science techniques to answer this question objectively, by analyzing Fenerbahçe’s historical performance (last 20 seasons) under different managers.
 
 ---
 
