@@ -37,8 +37,6 @@ Each row in the dataset will represent one coach’s tenure and include:
 | Draws | Number of draws |
 | Losses | Number of losses |
 | Win Rate (%) | Calculated as Wins / Total Matches |
-| Avg. Goals Scored | Goals scored per match |
-| Avg. Goals Conceded | Goals conceded per match |
 | Trophies Won | Total number of trophies |
 
 The dataset will be recorded in an Excel file named `fenerbahce_coaches_data.csv`.
