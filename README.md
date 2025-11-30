@@ -9,6 +9,7 @@ Fenerbahçe, one of the most established football clubs in Turkey, has had numer
 The goal of this project is to determine whether **foreign** or **Turkish** head coaches have been **more successful** in Fenerbahçe’s recent history.  
 To measure “success,” I will compare key performance metrics such as:
 - Win rate (%)
+- Average Points Per Game
 - Average goals scored per match
 - Average goals conceded per match
 - Number of trophies (league titles, cups)
@@ -30,13 +31,14 @@ Each row in the dataset will represent one coach’s tenure and include:
 | Variable | Description |
 |-----------|--------------|
 | Coach Name | Name of the manager |
+| Season | Year of the Season |
 | Nationality | Turkish or Foreign |
-| Period | Starting and ending years |
 | Total Matches | Number of games managed |
 | Wins | Number of wins |
 | Draws | Number of draws |
 | Losses | Number of losses |
 | Win Rate (%) | Calculated as Wins / Total Matches |
+| Points Per Game | Calculated as (3 * Wins + 1 * Draws + 0 * Losses) / Total Matches |
 | Trophies Won | Total number of trophies |
 
 The dataset will be recorded in an Excel file named `fenerbahce_coaches_data.csv`.
