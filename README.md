@@ -141,16 +141,6 @@ This analysis examines offensive and defensive strength:
 - **Average Goals Conceded per Match**  
   *Do the two groups differ in defensive performance?*
 
-### **Sub-Analysis 4 — Trophy Achievement Rate**
-**Research Question:**  
-Is the **trophy-winning rate** (ratio of seasons with at least one trophy) different between Turkish and foreign coaches?
-
-This is tested using a **Chi-Square Test of Independence**, where:
-
-- Rows → Coach nationality (Turkish / Foreign)  
-- Columns → Trophy won in that season (Yes / No)
-
-These sub-analyses support the main hypothesis by providing a **multi-dimensional comparison** between the two coach groups across performance, efficiency, and success metrics.
 
 ### Metrics to be Tested
 
