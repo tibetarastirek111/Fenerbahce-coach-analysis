@@ -119,6 +119,38 @@ The EDA focuses on understanding seasonal performance differences between Turkis
 
 - **H₁ (Alternative Hypothesis):**  
   There **is a significant difference** in overall performance between Turkish and foreign coaches.
+## Research Sub-Questions (Supporting the Main Hypothesis)
+
+In addition to the main hypothesis comparing overall performance between Turkish and foreign coaches, the project also investigates several **research sub-questions**.  
+These are not formal hypotheses but **supporting analytical questions** that help interpret performance differences more precisely.
+
+### **Sub-Analysis 1 — Points Per Game (PPG)**
+**Research Question:**  
+Do Turkish and foreign coaches differ significantly in their average **Points Per Game**?
+
+### **Sub-Analysis 2 — Win Rate (%)**
+**Research Question:**  
+Is there a meaningful difference in the **win rate** of Turkish vs foreign coaches?
+
+### **Sub-Analysis 3 — Goal Performance**
+This analysis examines offensive and defensive strength:
+
+- **Average Goals Scored per Match**  
+  *Do foreign or Turkish coaches score more goals on average?*
+
+- **Average Goals Conceded per Match**  
+  *Do the two groups differ in defensive performance?*
+
+### **Sub-Analysis 4 — Trophy Achievement Rate**
+**Research Question:**  
+Is the **trophy-winning rate** (ratio of seasons with at least one trophy) different between Turkish and foreign coaches?
+
+This is tested using a **Chi-Square Test of Independence**, where:
+
+- Rows → Coach nationality (Turkish / Foreign)  
+- Columns → Trophy won in that season (Yes / No)
+
+These sub-analyses support the main hypothesis by providing a **multi-dimensional comparison** between the two coach groups across performance, efficiency, and success metrics.
 
 ### Metrics to be Tested
 
