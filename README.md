@@ -38,9 +38,9 @@ The ultimate goal is to determine **whether there is a significant difference be
 ## Data Source
 Data will be collected manually from publicly available football databases such as:
 - Transfermarkt
-- Wikipedia – Fenerbahçe SK Managers
-- TFF Official Website
-- Mackolik
+- Wikipedia – Fenerbahçe SK Managers (https://tr.wikipedia.org/wiki/Fenerbahçe_teknik_direktörleri_listesi)
+- TFF Official Website (https://www.tff.org/Default.aspx?pageId=28&kulupID=3592)
+- Mackolik (https://arsiv.mackolik.com/Takim/2/Fenerbahce)
 
 Three raw Excel files were provided:
 
