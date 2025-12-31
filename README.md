@@ -152,7 +152,7 @@ EDA results provided descriptive insights but did not establish statistical sign
 
 Since **p > 0.05**, the null hypothesis **could not be rejected**.
 
-➡️ There is **no statistically significant difference** in points per game between Turkish and foreign coaches.
+There is **no statistically significant difference** in points per game between Turkish and foreign coaches.
 
 ---
 
