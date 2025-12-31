@@ -1,7 +1,7 @@
 # Performance Analysis of Fenerbahçe Football Team Based on Manager Selection (Domestic vs Foreign)
 
 **DSA210 – Introduction to Data Science (Fall 2025)**  
-**Author:** Tibet Aras Tirek  
+Tibet Aras Tirek  
 
 ---
 
