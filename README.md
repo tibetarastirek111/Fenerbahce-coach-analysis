@@ -40,10 +40,10 @@ The primary focus is **interpretation and analytical rigor**, rather than maximi
 
 All data were **manually collected** from publicly available football resources:
 
-- Transfermarkt  
-- Wikipedia – Fenerbahçe Managers  
-- Turkish Football Federation (TFF)  
-- Mackolik Archive  
+- Transfermarkt (https://www.transfermarkt.com.tr/fenerbahce-istanbul/startseite/verein/36)
+- Wikipedia – Fenerbahçe SK Managers (https://tr.wikipedia.org/wiki/Fenerbahçe_teknik_direktörleri_listesi)
+- TFF Official Website (https://www.tff.org/Default.aspx?pageId=28&kulupID=3592)
+- Mackolik (https://arsiv.mackolik.com/Takim/2/Fenerbahce)
 
 ### Raw Data Files
 
