@@ -1,112 +1,116 @@
-# Performance analysis of Fenerbahçe Football Team based on manager selection (Domestic / Foreign)
-**DSA210 - Introduction to Data Science (Fall 2025) - Tibet Aras Tirek**
----
+# Performance Analysis of Fenerbahçe Football Team Based on Manager Selection (Domestic vs Foreign)
 
-# Project Motivation
-
-Football clubs make strategic choices when appointing head coaches, and the nationality of these coaches is often a key discussion topic among fans, analysts, and club management. For a club like **Fenerbahçe**, which has experienced many coaching changes between 2005 and 2025, understanding whether **Turkish** or **foreign** coaches perform better is an important analytical question.
-
-This project aims to **analyze the seasonal performance metrics** of all Fenerbahçe head coaches who managed the team between **2005–2006 and 2024–2025**, using manually compiled datasets.  
-By comparing performance indicators such as:
-
-- Points Per Game (PPG)  
-- Win Rate (%)  
-- Goals scored & conceded  
-- Trophy achievements  
-
-and by building basic machine learning models that incorporate coach nationality as a feature, the project investigates whether nationality systematically influences success.
-
-The ultimate goal is to determine **whether there is a significant difference between domestic and foreign coaches**, what factors influence performance, and how accurately a model can capture seasonal success patterns.
+**DSA210 – Introduction to Data Science (Fall 2025)**  
+**Author:** Tibet Aras Tirek  
 
 ---
 
-# Objectives
+## Project Motivation
 
-- Collect and organize season-level coaching performance data (2005–2025)
-- Perform **data cleaning** and **exploratory data analysis (EDA)**
-- Engineer additional variables such as:
-  - `is_foreign` (0 = Turkish, 1 = Foreign)
-  - `has_trophy` (0/1)
-  - `season_start_year`
-- Conduct **hypothesis testing** to evaluate differences between Turkish and foreign coaches
-- Build **machine learning models** to examine how nationality and other features influence performance
-- Visualize key differences with bar plots, line charts, and distribution plots
-- Interpret results and discuss real-world implications for football management
+Football clubs make strategic decisions when appointing head coaches, and the nationality of these coaches is often a subject of debate among fans, analysts, and club management. For a club like **Fenerbahçe**, which has experienced frequent managerial changes between **2005–2006 and 2024–2025**, understanding whether **Turkish or foreign coaches perform differently** is an important analytical question.
+
+This project analyzes **season-level performance data** of all Fenerbahçe head coaches during this period. Using manually compiled datasets, the study examines whether coach nationality is associated with differences in team performance.
+
+The analysis is conducted in three complementary stages:
+
+1. **Exploratory Data Analysis (EDA)** to understand historical performance patterns  
+2. **Hypothesis Testing** to statistically evaluate performance differences  
+3. **Machine Learning (Regression)** to model and predict seasonal performance  
+
+The primary focus is **interpretation and analytical rigor**, rather than maximizing predictive accuracy.
+
+---
+
+## Project Objectives
+
+- Compile a clean, season-level dataset of Fenerbahçe head coaches (2005–2025)
+- Perform structured **exploratory data analysis (EDA)** on key performance metrics
+- Engineer meaningful features such as:
+  - Coach nationality (`is_foreign`)
+  - Trophy indicator (`has_trophy`)
+  - Season start year
+- Conduct **formal hypothesis testing** to compare Turkish and foreign coaches
+- Build an interpretable **regression-based machine learning model**
+- Evaluate whether coach nationality has a measurable effect on performance
+- Present results through clear tables, plots, and statistical interpretation
 
 ---
 
-## Data Source
-Data will be collected manually from publicly available football databases such as:
-- Transfermarkt
-- Wikipedia – Fenerbahçe SK Managers (https://tr.wikipedia.org/wiki/Fenerbahçe_teknik_direktörleri_listesi)
-- TFF Official Website (https://www.tff.org/Default.aspx?pageId=28&kulupID=3592)
-- Mackolik (https://arsiv.mackolik.com/Takim/2/Fenerbahce)
+## Data Sources
 
-Three raw Excel files were provided:
+All data were **manually collected** from publicly available football resources:
 
-- `fenerbahce_coaches_data.xlsx` – Season-level detailed stats  
-- `fenerbahce_coaches_data2.xlsx` – Aggregated summary for foreign coaches  
-- `fenerbahce_coaches_data3.xlsx` – Aggregated summary for domestic coaches  
+- Transfermarkt  
+- Wikipedia – Fenerbahçe Managers  
+- Turkish Football Federation (TFF)  
+- Mackolik Archive  
 
-All data will be cleaned and merged into:
+### Raw Data Files
 
-- `data/processed/fenerbahce_coaches_seasons.csv`
+The following Excel files were used:
+
+- `fenerbahce_coaches_data.xlsx` – Season-level coaching performance data  
+- `fenerbahce_coaches_data2.xlsx` – Supplementary aggregated data (foreign coaches)  
+- `fenerbahce_coaches_data3.xlsx` – Supplementary aggregated data (Turkish coaches)  
+- `market_values.xlsx` – Squad market values by season (used only in ML stage)
+
+All datasets were cleaned, merged, and processed within the analysis notebooks.
 
 ---
-# Data Structure
 
-The processed CSV will include (at least) the following variables:
+## Data Structure
 
-| Variable            | Description                                   | Type        |
-|---------------------|-----------------------------------------------|-------------|
-| season              | Season (e.g. 2005–2006)                       | Categorical |
-| coach_name          | Name of head coach                            | String      |
-| nationality         | Country of coach                              | String      |
-| is_foreign          | 1 if coach is foreign, 0 if Turkish           | Binary      |
-| total_matches       | Total matches coached in that season          | Numerical   |
-| win                 | Number of wins                                | Numerical   |
-| draw                | Number of draws                               | Numerical   |
-| loss                | Number of losses                              | Numerical   |
-| points_per_game     | Points per game average                       | Numerical   |
-| win_rate            | Win percentage                                | Numerical   |
-| avg_goals_scored    | Average goals scored per match                | Numerical   |
-| avg_goals_conceded  | Average goals conceded per match              | Numerical   |
-| trophies_text       | Cup names (if any)                            | Categorical |
-| has_trophy          | 1 if trophy won that season                   | Binary      |
-| season_start_year   | First year of the season (e.g., 2005)         | Numerical   |
+The core dataset used for EDA and hypothesis testing is season-based and includes the following variables:
 
-# Methods
+| Variable | Description |
+|--------|------------|
+| `season` | Season (e.g., 2005–2006) |
+| `season_start_year` | First year of the season |
+| `coach_name` | Head coach name |
+| `nationality` | Coach nationality |
+| `is_foreign` | 1 = Foreign, 0 = Turkish |
+| `total_matches` | Matches coached that season |
+| `win`, `draw`, `loss` | Match outcomes |
+| `points_per_game` | Average points per game |
+| `win_rate` | Win percentage |
+| `avg_goals_scored` | Goals scored per match |
+| `avg_goals_conceded` | Goals conceded per match |
+| `trophies_text` | Trophy description (if any) |
+| `has_trophy` | 1 if at least one trophy won |
+
+---
 
 ## 1. Exploratory Data Analysis (EDA)
 
-The EDA focuses on understanding seasonal performance differences between Turkish and foreign coaches.
+EDA was conducted to understand **historical performance patterns** and differences between Turkish and foreign coaches.
 
-### Planned EDA Steps
+### EDA Components
 
-1. **Descriptive Statistics**
-   - Mean, median, and distribution of PPG, win rate, goals scored/conceded and trophy rate by nationality.
+- **Descriptive Statistics**
+  - Mean, median, standard deviation of:
+    - Points per game (PPG)
+    - Win rate
+    - Goals scored and conceded
+    - Trophy rate
+- **Nationality-Based Comparisons**
+  - Bar plots comparing average PPG
+  - Boxplots showing PPG distributions
+- **Win Rate Analysis**
+  - Group-wise summary statistics
+  - Distribution comparison
+- **Goal Performance Analysis**
+  - Offensive (goals scored)
+  - Defensive (goals conceded)
+- **Trophy Analysis**
+  - Trophy rate by nationality:
+    - `trophy_rate = seasons_with_trophy / total_seasons`
+- **Time Trends**
+  - Line plots of PPG and win rate over time
+  - Colored by coach nationality
+- **Coach-Level Summaries**
+  - Aggregated performance profiles for individual coaches
 
-2. **Points Per Game Comparison**
-   - Bar plots of average PPG by nationality.
-   - Boxplots of PPG distribution for Turkish vs foreign coaches.
-
-3. **Win Rate Analysis**
-   - Comparison of win percentages between groups.
-
-4. **Goal Performance**
-   - Comparison of average goals scored and conceded per match for each nationality group.
-
-5. **Trophy Achievements**
-   - Calculation of trophy rate:
-     - `trophy_rate = total seasons with trophy / total seasons coached`
-   - Comparison between Turkish and foreign coaches.
-
-6. **Trend Over Time**
-   - Line plots of PPG and win rate over seasons, colored by coach nationality.
-   - Identification of periods dominated by domestic or foreign coaches.
-
-7. **Coach-Level Profiles**
-   - Summary tables and visual comparisons of key coaches (e.g., Christoph Daum, Arthur Zico, Luis Aragones, Vitor Pereira, Aykut Kocaman, Ersun Yanal, İsmail Kartal, Jorge Jesus, Jose Mourinho).
+EDA results provided descriptive insights but did not establish statistical significance.
 
 ---
 
@@ -115,128 +119,128 @@ The EDA focuses on understanding seasonal performance differences between Turkis
 ### Main Hypothesis
 
 - **H₀ (Null Hypothesis):**  
-  There is **no significant difference** in overall performance between Turkish and foreign coaches.
+  There is **no statistically significant difference** in overall performance between Turkish and foreign coaches.
 
 - **H₁ (Alternative Hypothesis):**  
-  There **is a significant difference** in overall performance between Turkish and foreign coaches.
-## Research Sub-Questions (Supporting the Main Hypothesis)
+  There **is a statistically significant difference** in overall performance between Turkish and foreign coaches.
 
-In addition to the main hypothesis comparing overall performance between Turkish and foreign coaches, the project also investigates several **research sub-questions**.  
-These are not formal hypotheses but **supporting analytical questions** that help interpret performance differences more precisely.
+### Performance Metric Used
 
-### **Sub-Analysis 1 — Points Per Game (PPG)**
-**Research Question:**  
-Do Turkish and foreign coaches differ significantly in their average **Points Per Game**?
+- **Points Per Game (PPG)** was selected as the primary indicator of overall performance.
 
-### **Sub-Analysis 2 — Win Rate (%)**
-**Research Question:**  
-Is there a meaningful difference in the **win rate** of Turkish vs foreign coaches?
+### Statistical Procedure
 
-### **Sub-Analysis 3 — Goal Performance**
-This analysis examines offensive and defensive strength:
+1. **Normality Testing**
+   - Shapiro–Wilk test applied separately to Turkish and foreign coach PPG distributions
+   - Result:
+     - Turkish group: approximately normal
+     - Foreign group: non-normal
 
-- **Average Goals Scored per Match**  
-  *Do foreign or Turkish coaches score more goals on average?*
+2. **Variance Homogeneity**
+   - Levene’s test indicated equal variances
 
-- **Average Goals Conceded per Match**  
-  *Do the two groups differ in defensive performance?*
+3. **Test Selection**
+   - Due to non-normality in one group:
+     - **Mann–Whitney U test** was used
 
+### Results
 
-### Metrics to be Tested
+- Mann–Whitney U statistic = 100.0  
+- p-value = 0.2419  
 
-- Points Per Game (PPG)  
-- Win Rate (%)  
-- Goals scored per match  
-- Goals conceded per match  
-- Trophy rate (proportion of seasons with trophies)
+### Conclusion
 
-### Statistical Tests
+Since **p > 0.05**, the null hypothesis **could not be rejected**.
 
-Depending on the distributional assumptions:
-
-- **Two-sample t-test**
-  - To compare mean PPG and win rates between Turkish and foreign coaches.
-
-- **Chi-Square Test of Independence**  
-  - To compare trophy-winning rates (has_trophy) between the two nationality groups.
-
-These tests follow the hypothesis testing framework introduced in the DSA210 course and will be used to determine whether nationality is associated with significant performance differences.
+➡️ There is **no statistically significant difference** in points per game between Turkish and foreign coaches.
 
 ---
 
-## 3. ML Model
+## 3. Machine Learning: Regression Analysis
 
-### Model 1 – Logistic Regression: Trophy Prediction
+### Objective
 
-**Goal:**  
-Predict whether a season ends with at least one trophy (`has_trophy` = 1) based on season-level performance metrics.
+To model and predict **season-level Points Per Game (PPG)** using historical performance metrics and squad market value information.
 
-**Features (candidate set):**
+### Dataset Used
 
-- `points_per_game`  
-- `win_rate`  
-- `avg_goals_scored`  
-- `avg_goals_conceded`  
-- `is_foreign`  
-- Possibly `total_matches` or `season_start_year`
+- Season-level coaching performance data  
+- Market value data merged by season  
+- Time-ordered dataset (chronological split)
 
-**Target:**
+### Feature Engineering
 
-- `has_trophy` (Binary)
+Additional features created:
 
-**Evaluation:**
+- Lagged market value (`mv_lag_1`)
+- Market value percentage change
+- Rolling mean and standard deviation of market value
+- Season start year
 
-- Accuracy  
-- Precision, Recall, F1-score (interpreted cautiously due to small sample size)  
-
-The focus is on **interpretation of coefficients**, especially the effect of `is_foreign` on the probability of winning a trophy.
+Initial rows with missing lag/rolling values were dropped.
 
 ---
 
-### Model 2 – Linear Regression: Predicting Points Per Game
+### Model: Ridge Regression
 
-**Goal:**  
-Estimate a season’s PPG using coach nationality and other features.
+**Target Variable**
+- `points_per_game`
 
-**Features (candidate set):**
+**Features**
+- Market value features (current, lag, trend, rolling)
+- Goals scored and conceded
+- Win rate
+- Match volume indicators
 
-- `is_foreign`  
-- `season_start_year`  
-- `avg_goals_scored`  
-- `avg_goals_conceded`  
-- Possibly trophy-related or match-related variables
+**Training Strategy**
+- Chronological train-test split (75% / 25%)
+- No data leakage across seasons
+- Pipeline-based preprocessing:
+  - Median imputation
+  - Standard scaling
 
-**Target:**
+### Evaluation Metrics
 
-- `points_per_game` (Numerical)
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- R² score
+- Comparison against a baseline (mean PPG predictor)
 
-**Evaluation:**
+### Outcome
 
-- R², RMSE  
-- Inspection of regression coefficients  
-
-Again, the main goal is **understanding** rather than high predictive power. The coefficient for `is_foreign` will be interpreted as the estimated impact of being a foreign coach on PPG, controlling for other variables.
-
----
-
-# Expected Results
-
-- A cleaned and well-documented dataset:  
-  - `data/processed/fenerbahce_coaches_seasons.csv`
-- EDA and visualization outputs (plots comparing Turkish vs foreign coaches)
-- Statistical test results for performance metrics and trophy rates
-- Interpretable machine learning models:
-  - Logistic regression for trophy prediction
-  - Linear regression for PPG estimation
-- Discussion of whether foreign or Turkish coaches have systematically better performance
-- Identification of limitations (small dataset, single club, season-level aggregation) and ideas for future work
+- The regression model significantly outperformed the baseline
+- Market value dynamics and performance metrics explained a meaningful portion of PPG variance
+- Results were interpreted **analytically**, not as a production-grade prediction system
 
 ---
 
-## Project Timeline  
-| Phase | Description | Deadline |
-|-------|--------------|-----------|
-| **Phase 1** | Project proposal | **Oct 31, 2025** |
-| **Phase 2** | Data collection & EDA | **Nov 28, 2025** |
-| **Phase 3** | ML implementation | **Jan 2, 2026** |
-| **Phase 4** | Final report & submission | **Jan 9, 2026** |
+## Key Takeaways
+
+- Turkish coaches show **slightly higher average performance**, but
+- **No statistically significant difference** was found between Turkish and foreign coaches
+- Market value trends help explain seasonal success but do not fully determine outcomes
+- Results highlight the **complexity of football performance** beyond nationality
+
+---
+
+## Limitations & Future Work
+
+- Single-club analysis
+- Small sample size (season-level data)
+- No player-level or tactical variables
+- Future extensions:
+  - Multi-club comparison
+  - Panel data methods
+  - Time-series models
+
+---
+
+## Project Timeline
+
+| Phase | Description | Date |
+|-----|------------|------|
+| Phase 1 | Proposal | Oct 31, 2025 |
+| Phase 2 | Data Collection & EDA | Nov 28, 2025 |
+| Phase 3 | Hypothesis Testing & ML | Jan 2, 2026 |
+| Phase 4 | Final Submission | Jan 9, 2026 |
+
