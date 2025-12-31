@@ -236,11 +236,11 @@ Initial rows with missing lag/rolling values were dropped.
 ---
 
 ## Project Timeline
+| Phase | Description | Deadline |
+|-------|--------------|-----------|
+| **Phase 1** | Project proposal | **Oct 31, 2025** |
+| **Phase 2** | Data collection & EDA & Hypothesis Testing | **Nov 28, 2025** |
+| **Phase 3** | ML implementation | **Jan 2, 2026** |
+| **Phase 4** | Final report & submission | **Jan 9, 2026** |
 
-| Phase | Description | Date |
-|-----|------------|------|
-| Phase 1 | Proposal | Oct 31, 2025 |
-| Phase 2 | Data Collection & EDA | Nov 28, 2025 |
-| Phase 3 | Hypothesis Testing & ML | Jan 2, 2026 |
-| Phase 4 | Final Submission | Jan 9, 2026 |
 
